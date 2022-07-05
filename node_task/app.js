@@ -93,7 +93,7 @@ app.delete('lists/:id', (req, res) =>{
 app.get('/lists/:listId/tasks', (req, res) =>{
     // we want to remove all task that to a specific list (specified by listed)
     Task.find({
-        _listId: req.params.listID
+        _listId: req.params.listId
     }).then((tasks) =>{
         res.send(tasks);
     })
@@ -115,7 +115,7 @@ app.get('/lists/:listId/tasks/:taskId', (req, res) =>{
  */
 app.post('/lists/:listId/tasks', (req, res) => {
     // We want to create a new task in a list specified by listId
-    let nreTask = new Task({
+    let newTask = new Task({
         title: req.body.title,
         _listId: req.params.listId
     });
