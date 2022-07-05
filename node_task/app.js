@@ -11,6 +11,12 @@ const { List, Task } = require('./db/models')
 // Load middleware
 app.use(bodyParser.json());
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Header",
+    "origin, X-Requested-with, Content-Type, Accept")
+})
+
 /* ROUTE HANDLERS */
 
 
@@ -33,16 +39,25 @@ app.get('/lists', (req, res) =>{
  * Purpose: Create a list
  */
 app.post ('/lists', (req, res) => {
+    console.log('call a list post function')
     // we want to create a new list and return the new list document back to the user (which includes the id)
     // the list information (fields) will be passed in via the JSON request body
     let title = req.body.title;
-
+    console.log('title: ', title)
     let newList = new List({
         title
     });
     newList.save().then((listDoc) => {
         // the full list document is returned(incl .id)
-        res.send(listDoc)
+        res.status(202).json({
+            message: "Create a List",
+            result: listDoc
+        })
+    }).catch((err) =>{
+        console.log(err)
+        res.status(401).json({
+            error: err
+        })
     })
 })
 
