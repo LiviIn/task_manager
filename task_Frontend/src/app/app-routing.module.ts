@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewListComponent } from './pages/new-list/new-list.component';
+import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { TaskviewComponent } from './pages/taskview/taskview.component'
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'new-list',
     component: NewListComponent,
+  },
+  {
+    path: 'new-task',
+    component: NewTaskComponent
   },
   {
     path: 'lists/:listId',
