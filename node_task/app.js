@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const { mongoose } = require('./db/mongoose');
 
@@ -11,11 +12,8 @@ const { List, Task } = require('./db/models')
 // Load middleware
 app.use(bodyParser.json());
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Header",
-    "origin, X-Requested-with, Content-Type, Accept")
-})
+// CORS HEADERS MIDDLEWARE
+app.use(cors())
 
 /* ROUTE HANDLERS */
 
