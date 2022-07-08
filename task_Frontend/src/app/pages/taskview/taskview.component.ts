@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { List } from 'src/app/model.ts/list.model';
 import { TaskService } from 'src/app/task.service';
 
 @Component({
@@ -8,17 +9,20 @@ import { TaskService } from 'src/app/task.service';
   styleUrls: ['./taskview.component.scss']
 })
 export class TaskviewComponent implements OnInit {
-  lists: any[] = [];
+  lists: List[] = [];
   tasks: any[] = [];
+  listId: any;
   constructor(
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private routeNav: Router
   ) { 
     
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
+      this.listId = params['listId'];
       if(params['listId']) {
         this.taskService.getTask(params['listId']).subscribe((tasks: any)=>{
           this.tasks = tasks;
@@ -31,6 +35,15 @@ export class TaskviewComponent implements OnInit {
 
     this.taskService.getLists().subscribe((lists: any) =>{
       this.lists = lists; 
+    })
+  }
+
+  onTaskClick(task: any){
+    // we want to set the task to completed
+    this.taskService.complete(task).subscribe((res)=>{
+      // the task has been ste to completed successfully
+      console.log('Completed successfully..!', )
+      task.completed = !task.completed
     })
   }
 

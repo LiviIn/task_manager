@@ -5,14 +5,14 @@
         </h1>
 
         <input 
-            #listTitleInput
+            #taskTitleInput
             type="text" 
             class="input has-background-light" 
-            placeholder="Enter list name...">
+            placeholder="Enter task name...">
         <br><br>
         <div class="buttons is-right">
             <button class="button" routerLink="/">Cancel</button>
-            <button class="button is-primary has-text-white" (click) = "createList(listTitleInput.value)">Create</button>
+            <button class="button is-primary has-text-white" (click) = "createTask(taskTitleInput.value)">Create</button>
         </div>
     </div>
 </div>

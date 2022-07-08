@@ -134,7 +134,9 @@ app.patch('/lists/:listId/tasks/:taskId', (req, res) =>{
         _id: req.params.taskId,
         _listId: req.params.listId
     }, { $set: req.body}).then(() =>{
-        res.sendStatus(200);
+        res.status(200).json({
+            message: 'Update Successfully..!'
+        });
     })
 })
 
@@ -150,6 +152,7 @@ app.delete('/lists/:listId/tasks/:taskId', (req, res) =>{
         res.send(removedTaskDoc)
     })
 })
+
 app.listen(3000, () =>{
     console.log('Server is listening on port 3000')
 })

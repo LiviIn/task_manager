@@ -13,17 +13,17 @@
             </div>
             
 
-            <button class="button is-primary has-text-white" routerLink="/new-list">+ New List</button>
+            <button class="button is-primary has-text-white" routerLink="/lists/new-list">+ New List</button>
         </div>
         <div class="task-list-container has-background-light">
             <h1 class="title has-text-primary">Tasks</h1>
 
             <!-- task Elements -->
-            <div class="task" *ngFor = "let task of tasks">
+            <div class="task" *ngFor = "let task of tasks" (click) = "onTaskClick(task)" [ngClass]="{'completed': task.completed}">
                 <p>{{task.title}}</p>
             </div>
 
-            <button class="circle-add-button button is-primary has-text-white" routerLink="/new-task">
+            <button class="circle-add-button button is-primary has-text-white" routerLink="./new-task">
                 + New Task
             </button>
             
