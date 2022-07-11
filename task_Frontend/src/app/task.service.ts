@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { WebRequestService } from './web-request.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class TaskService {
     private webReqService: WebRequestService
   ) { }
 
-  getLists() {
+  getLists(): Observable<any> {
     return this.webReqService.get('lists');
   }
 
@@ -19,7 +20,7 @@ export class TaskService {
     return this.webReqService.post('lists', {title})
   }
 
-  getTask(listId: string){
+  getTask(listId: string): Observable<any>{
     return this.webReqService.get(`lists/${listId}/tasks`);
   }
 
